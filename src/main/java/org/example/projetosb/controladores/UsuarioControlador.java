@@ -1,4 +1,4 @@
-package org.example.projetosb;
+package org.example.projetosb.controladores;
 
 import org.example.projetosb.entidades.Usuario;
 import org.springframework.http.ResponseEntity;
