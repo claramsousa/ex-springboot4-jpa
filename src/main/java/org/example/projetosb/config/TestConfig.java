@@ -2,6 +2,7 @@ package org.example.projetosb.config;
 
 import org.example.projetosb.entidades.Pedido;
 import org.example.projetosb.entidades.Usuario;
+import org.example.projetosb.entidades.enums.StatusPedido;
 import org.example.projetosb.repositorios.PedidoRepositorio;
 import org.example.projetosb.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class TestConfig implements CommandLineRunner {
 
         usuarioRepositorio.saveAll(Arrays.asList(u1, u2));
 
-        Pedido o1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Pedido o2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-        Pedido o3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+        Pedido o1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"), StatusPedido.PAGO, u1);
+        Pedido o2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), StatusPedido.PAGAMENTO_PENDENTE, u2);
+        Pedido o3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), StatusPedido.PAGAMENTO_PENDENTE, u1);
 
         pedidoRepositorio.saveAll(Arrays.asList(o1, o2, o3));
     }
