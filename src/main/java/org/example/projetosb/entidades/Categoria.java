@@ -1,12 +1,11 @@
 package org.example.projetosb.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Categoria implements Serializable {
@@ -14,17 +13,17 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+
+    @Transient
+    private Set<Produto> produtos = new HashSet<>();
 
     public Categoria(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Categoria() {
-
-    }
+    public Categoria() {}
 
     public Long getId() {
         return id;
@@ -40,6 +39,10 @@ public class Categoria implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Produto> getProdutos(){
+        return produtos;
     }
 
     @Override

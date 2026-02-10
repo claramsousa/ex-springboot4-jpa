@@ -2,10 +2,12 @@ package org.example.projetosb.config;
 
 import org.example.projetosb.entidades.Categoria;
 import org.example.projetosb.entidades.Pedido;
+import org.example.projetosb.entidades.Produto;
 import org.example.projetosb.entidades.Usuario;
 import org.example.projetosb.entidades.enums.StatusPedido;
 import org.example.projetosb.repositorios.CategoriaRepositorio;
 import org.example.projetosb.repositorios.PedidoRepositorio;
+import org.example.projetosb.repositorios.ProdutoRepositorio;
 import org.example.projetosb.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoriaRepositorio categoriaRepositorio;
 
+    @Autowired
+    private ProdutoRepositorio produtoRepositorio;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -47,5 +52,14 @@ public class TestConfig implements CommandLineRunner {
         Categoria cat3 = new Categoria(null, "Computadores");
 
         categoriaRepositorio.saveAll(Arrays.asList(cat1, cat2, cat3));
+
+        Produto p1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Produto p2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Produto p3 = new Produto(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Produto p4 = new Produto(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Produto p5 = new Produto(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+
+        produtoRepositorio.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }
