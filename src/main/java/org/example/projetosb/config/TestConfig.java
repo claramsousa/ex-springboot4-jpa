@@ -1,8 +1,10 @@
 package org.example.projetosb.config;
 
+import org.example.projetosb.entidades.Categoria;
 import org.example.projetosb.entidades.Pedido;
 import org.example.projetosb.entidades.Usuario;
 import org.example.projetosb.entidades.enums.StatusPedido;
+import org.example.projetosb.repositorios.CategoriaRepositorio;
 import org.example.projetosb.repositorios.PedidoRepositorio;
 import org.example.projetosb.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private PedidoRepositorio pedidoRepositorio;
 
+    @Autowired
+    private CategoriaRepositorio categoriaRepositorio;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,5 +41,11 @@ public class TestConfig implements CommandLineRunner {
         Pedido o3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), StatusPedido.PAGAMENTO_PENDENTE, u1);
 
         pedidoRepositorio.saveAll(Arrays.asList(o1, o2, o3));
+
+        Categoria cat1 = new Categoria(null, "Eletronicos");
+        Categoria cat2 = new Categoria(null, "Livros");
+        Categoria cat3 = new Categoria(null, "Computadores");
+
+        categoriaRepositorio.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 }
