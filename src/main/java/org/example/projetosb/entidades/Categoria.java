@@ -1,5 +1,6 @@
 package org.example.projetosb.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,7 +16,8 @@ public class Categoria implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categorias")
     private Set<Produto> produtos = new HashSet<>();
 
     public Categoria(Long id, String name) {
