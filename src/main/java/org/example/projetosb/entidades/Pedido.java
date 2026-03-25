@@ -6,7 +6,9 @@ import org.example.projetosb.entidades.enums.StatusPedido;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -22,6 +24,9 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<PedidoItem> itens = new HashSet<>();
 
     public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
         this.id = id;
@@ -66,6 +71,10 @@ public class Pedido implements Serializable {
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
+
+    public Set<PedidoItem> getItens() {return itens;}
+
+    public void setItens(Set<PedidoItem> itens) {this.itens = itens;}
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,7 @@
 package org.example.projetosb.entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -12,7 +14,7 @@ import java.util.Objects;
 public class PedidoItem implements Serializable {
 
     @EmbeddedId
-    private PedidoItemPK id;
+    private PedidoItemPK id = new PedidoItemPK();
 
     private Integer quantidade;
 
@@ -28,6 +30,7 @@ public class PedidoItem implements Serializable {
 
     public PedidoItem() {}
 
+    @JsonIgnore
     public Pedido getPedido(){
         return id.getPedido();
     }
