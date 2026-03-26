@@ -31,6 +31,14 @@ public class Pedido implements Serializable {
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Pagamento pagamento;
 
+    public Double getTotal(){
+        double soma = 0;
+        for (PedidoItem x : itens) {
+            soma += x.getSubTotal();
+        }
+        return soma;
+    }
+
     public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario cliente) {
         this.id = id;
         this.momento = momento;
