@@ -41,7 +41,6 @@ public class UsuarioServicos {
         }catch (DataIntegrityViolationException e){
             throw new DatabaseException(e.getMessage());
         }
-
     }
 
     public Usuario update(Long id, Usuario obj){
