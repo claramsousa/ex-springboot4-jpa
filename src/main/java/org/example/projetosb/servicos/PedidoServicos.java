@@ -2,6 +2,7 @@ package org.example.projetosb.servicos;
 
 import org.example.projetosb.entidades.Pedido;
 import org.example.projetosb.repositorios.PedidoRepositorio;
+import org.example.projetosb.servicos.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class PedidoServicos {
 
     public Pedido findById(Long id){
         Optional<Pedido> obj = repositorio.findById(id);
-        return obj.get();
+
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 }
