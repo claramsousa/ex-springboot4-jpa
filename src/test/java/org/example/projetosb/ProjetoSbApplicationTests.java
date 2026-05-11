@@ -9,5 +9,4 @@ class ProjetoSbApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
